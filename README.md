@@ -1,67 +1,18 @@
-## Foundry
+# Add Remove Liquidity from TricryptoUSDC Curve Pool
+This repo tests adding and removing liquidity from the TricryptoUSDC Curve pool. There's an failure on the removal of liquidity. 
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+The call to `remove_liquidity_one_coin` does no state changes and does not revert. Passing in arguments that should fail also does not fail.
 
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+There are two tests that both fail. In each case, `remove_liquidity_one_coin` is called and nothing happens. This shows up as:
 ```
+├─ [1849] 0x7F86Bf177Dd4F3494b841a37e810A34dD56c829B::remove_liquidity_one_coin(466388307333452426013 [4.663e20], 0, 0) 
+│   └─ ← ()
+```
+In the tests. Regardless of the arguments, the call does not fail.
+
 
 ### Test
 
 ```shell
-$ forge test
+$ forge test --fork-url <your-rpc> --etherscan-api-key <your-etherscan-api-key>
 ```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
-# add-remove-tricrypto
