@@ -38,7 +38,7 @@ contract CounterTest is Test {
         // remove liquidity
         uint256 lpBalance = TRICRYPTO.balanceOf(alice);
         vm.prank(alice);
-        ICurveSwap(TRI_CURVE_POOL).remove_liquidity_one_coin(lpBalance, 0, 0);
+        ICurveSwap(TRI_CURVE_POOL).remove_liquidity_one_coin(lpBalance, 0, 0, false, alice);
 
         // USDC was recovered
         assertGt(USDC.balanceOf(alice), 0);
@@ -49,7 +49,7 @@ contract CounterTest is Test {
         assertEq(TRICRYPTO.balanceOf(alice), 0);
 
         vm.prank(alice);
-        ICurveSwap(TRI_CURVE_POOL).remove_liquidity_one_coin(100, 0, 0);
+        ICurveSwap(TRI_CURVE_POOL).remove_liquidity_one_coin(100, 0, 0, false, alice);
 
     }
 }

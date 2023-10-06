@@ -11,7 +11,9 @@ interface ICurveSwap {
     function remove_liquidity_one_coin(
         uint256 _token_amount,
         int128 i,
-        uint256 min_amount
+        uint256 min_amount,
+        bool use_eth,
+        address receiver
     ) external;
 
 }
